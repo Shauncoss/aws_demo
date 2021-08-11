@@ -22,7 +22,7 @@ provider "vault" {
   #add_address_to_env = true
   auth_login {
     path = "auth/userpass/login/${var.username}"
-
+    namespace = "admin/aws/demo/"
     parameters = {
       password = var.password
     }
