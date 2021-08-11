@@ -7,3 +7,11 @@ variable "ami_id"{
     type = string
     default = "ami-0d08a21fc010da680"
 }
+
+variable "username"{
+  type = string
+}
+
+variable "password" {
+  type = string
+}
