@@ -4,7 +4,7 @@ resource "aws_key_pair" "ubuntu" {
 }
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
-  description = "allow all"
+  description = "allow ssh"
   vpc_id      = var.vpc
 
   ingress = [
@@ -39,7 +39,7 @@ resource "aws_instance" "testvm" {
   key_name      = aws_key_pair.ubuntu.key_name
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
   tags = {
-    Name = "testvm"
+    Name = "demovm"
   }
 }
 output "ec2_ip" {
