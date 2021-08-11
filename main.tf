@@ -18,6 +18,17 @@ resource "aws_security_group" "allow_ssh" {
       prefix_list_ids  = null
       self             = false
       security_groups  = null
+    },
+    {
+      description      = "Allow ICMP"
+      from_port        = 0
+      to_port          = 0
+      protocol         = "icmp"
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = null
+      prefix_list_ids  = null
+      self             = false
+      security_groups  = null
     }
   ]
   egress = [{
