@@ -24,7 +24,7 @@ provider "vault" {
     path = "auth/userpass/login/${var.username}"
     namespace = "admin/aws/demo/"
     parameters = {
-      password = "awsdemopw123"
+      password = var.password
     }
   }
 }
