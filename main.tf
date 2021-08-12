@@ -16,10 +16,10 @@ data "aws_ami" "instance_ami" {
   #   values = ["hvm"]
   # }
 
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
+  # filter {
+  #   name   = "architecture"
+  #   values = ["x86_64"]
+  # }
 }
 resource "aws_key_pair" "ubuntu" {
   key_name   = var.ubuntu_key_name
