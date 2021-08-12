@@ -4,11 +4,11 @@ data "vault_aws_access_credentials" "aws_creds" {
 }
 
 data "aws_ami" "instance_ami" {
-  owners      = ["099720109477"]
+  owners      = ["137112412989"]
   most_recent = true
   filter {
     name   = "path"
-    values = ["099720109477/ubuntu/images/hvm-ssd/ubuntu-bionic-*"]
+    values = ["amazon/amzn-ami-hvm-*"]
   }
 
   # filter {
