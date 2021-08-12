@@ -7,19 +7,19 @@ data "aws_ami" "instance_ami" {
   owners      = ["137112412989"]
   most_recent = true
   filter {
-    name   = "name"
+    name   = "source"
     values = ["amazon/amzn-ami-hvm-*"]
   }
 
-  # filter {
-  #   name   = "virtualization_type"
-  #   values = ["hvm"]
-  # }
+  filter {
+    name   = "virtualization_type"
+    values = ["hvm"]
+  }
 
-  # filter {
-  #   name   = "architecture"
-  #   values = ["x86_64"]
-  # }
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
 }
 resource "aws_key_pair" "ubuntu" {
   key_name   = var.ubuntu_key_name
