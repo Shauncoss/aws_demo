@@ -11,10 +11,10 @@ data "aws_ami" "instance_ami" {
     values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-*"]
   }
 
-  filter {
-    name   = "virtualization_type"
-    values = ["hvm"]
-  }
+  # filter {
+  #   name   = "virtualization_type"
+  #   values = ["hvm"]
+  # }
 
   filter {
     name   = "architecture"
