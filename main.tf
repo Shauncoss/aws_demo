@@ -7,8 +7,8 @@ data "aws_ami" "instance_ami" {
   owners      = ["137112412989"]
   most_recent = true
   filter {
-    name   = "source"
-    values = ["amazon/amzn-ami-hvm-*"]
+    name   = "name"
+    values = ["amzn-ami-hvm-*"]
   }
 
   filter {
