@@ -8,7 +8,7 @@ data "aws_ami" "instance_ami" {
   most_recent = true
   filter {
     name   = "path"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-*"]
+    values = ["099720109477/ubuntu/images/hvm-ssd/ubuntu-bionic-*"]
   }
 
   # filter {
