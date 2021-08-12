@@ -8,7 +8,7 @@ data "aws_ami" "instance_ami" {
   most_recent = true
   filter {
     name   = "path"
-    values = ["amazon/amzn-ami-hvm-*-x86_64-gp2"]
+    values = ["amazon/amzn-ami-hvm*"]
   }
 
   filter {
