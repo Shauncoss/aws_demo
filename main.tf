@@ -4,7 +4,7 @@ data "vault_aws_access_credentials" "aws_creds" {
 }
 
 data "aws_ami" "instance_ami" {
-  owners      = ["Canonical"]
+  owners      = ["099720109477"]
   most_recent = true
   filter {
     name   = "path"
