@@ -12,17 +12,17 @@ terraform {
 }
 
 provider "aws" {
-  region     = "us-east-1"
+  region     = var.region
   access_key = data.vault_aws_access_credentials.aws_creds.access_key
   secret_key = data.vault_aws_access_credentials.aws_creds.secret_key
 }
 
 provider "vault" {
-  address = "https://vault-cluster.vault.35108500-544b-45ec-b6a4-6230edfe5841.aws.hashicorp.cloud:8200"
+  address = "https:/auth/vault-cluster.vault.35108500-544b-45ec-b6a4-6230edfe5841.aws.hashicorp.cloud:8200"
   #add_address_to_env = true
   auth_login {
     path      = "auth/userpass/login/${var.username}"
-    namespace = "admin/aws/demo/"
+    namespace = var.vault_namespace
     parameters = {
       password = var.password
     }

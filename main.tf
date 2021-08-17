@@ -76,6 +76,6 @@ resource "aws_instance" "testvm" {
     Name = var.instance_tag
   }
 }
-output "ec2_ip" {
+output "ec2_dns" {
   value = aws_instance.testvm.public_dns
 }

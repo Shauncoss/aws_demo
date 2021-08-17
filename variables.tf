@@ -32,11 +32,6 @@ variable "instance_type" {
   type    = string
   default = "t2.micro"
 }
-variable "ami_id" {
-  type    = string
-  default = "ami-0d08a21fc010da680"
-}
-
 variable "instance_tag" {
   type    = string
   default = "demo-vm"
@@ -47,4 +42,13 @@ variable "username" {
 
 variable "password" {
   type = string
+}
+variable "region" {
+  type = string
+  default = "us-east-1"
+}
+
+variable "vault_namespace"{
+  type = string
+  default = "admin/aws/demo/"
 }
