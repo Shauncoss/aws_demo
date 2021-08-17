@@ -1,14 +1,33 @@
-data "vault_aws_access_credentials" "aws_creds"{
-  backend = "aws"
-  role = "awsuser"
+data "vault_aws_access_credentials" "aws_creds" {
+  backend = var.vault_backend
+  role    = var.vault_role
+}
+
+data "aws_ami" "instance_ami" {
+  owners      = ["137112412989"]
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["amzn-ami-hvm-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
 }
 resource "aws_key_pair" "ubuntu" {
-  key_name   = "ubuntu-key"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDPfbmXx4xboyRkaUbtKmJSBILKc4kcWiqcR6+GLHgi9c721SH8iMPcvsyrDvj6BJoo8VDIFRAiIa2mZNKsi2a5ZL9u5ro35yTuyEv8nyZwjXAZgO8sXtuols8OMeR8I0466wIFmFDUukQzXPOYiHHTcpIVJ9aMMXqZRj5j8mu5on+yrivWyQ3VmnyqxzWZEYhiBHM335hj05yTR5BHJpSWBr0iXlTsstkoOC6+skhwm6klBA5vGQ46YhMaXaeBpZH1QEeZOQAORpguvoAiFQ2Mj2Bc9mMzZPygbznZBMY+Y9jyL1hHIMz3KmCqBQkV/NaEVl8+Rw5DLFbPRc7eqC+vW9gpPIa5tNbnsHOdNBnc7zcWrRcHoh3fbyTRmbyC8wNVe2OLMTz3mmSFOSfEvyfs+KLutKeZxP/ANREBlCgxpohu07JWFhPSDX0QeLFd5F75NZe8G10En/KMyom07nzqBb6Ao9IKO+kXMgp+M87i7PI4EZntUkSztJ50rBQA4jM= tatoe@tatoe-pc"
+  key_name   = var.ubuntu_key_name
+  public_key = var.ubuntu_key
 }
 resource "aws_security_group" "sg" {
-  name        = "awsdemo_sg"
-  description = "allow ssh and icmp"
+  name        = var.sg_name
+  description = var.sg_description
   vpc_id      = var.vpc
 
   ingress = [
@@ -17,7 +36,7 @@ resource "aws_security_group" "sg" {
       from_port        = 22
       to_port          = 22
       protocol         = "tcp"
-      cidr_blocks      = ["0.0.0.0/0"]
+      cidr_blocks      = ["45.16.0.0/12"]
       ipv6_cidr_blocks = null
       prefix_list_ids  = null
       self             = false
@@ -28,7 +47,7 @@ resource "aws_security_group" "sg" {
       from_port        = "-1"
       to_port          = "-1"
       protocol         = "icmp"
-      cidr_blocks      = ["0.0.0.0/0"]
+      cidr_blocks      = ["45.16.0.0/12"]
       ipv6_cidr_blocks = null
       prefix_list_ids  = null
       self             = false
@@ -37,7 +56,7 @@ resource "aws_security_group" "sg" {
   ]
   egress = [{
     cidr_blocks      = ["0.0.0.0/0"]
-    description      = "Allow all"
+    description      = "Allow all egress"
     from_port        = 0
     ipv6_cidr_blocks = null
     prefix_list_ids  = null
@@ -49,14 +68,14 @@ resource "aws_security_group" "sg" {
 
 }
 resource "aws_instance" "testvm" {
-  ami           = var.ami_id
-  instance_type = "t2.micro"
-  key_name      = aws_key_pair.ubuntu.key_name
+  ami                    = data.aws_ami.instance_ami.id
+  instance_type          = var.instance_type
+  key_name               = aws_key_pair.ubuntu.key_name
   vpc_security_group_ids = [aws_security_group.sg.id]
   tags = {
-    Name = "demovm"
+    Name = var.instance_tag
   }
 }
-output "ec2_ip" {
+output "ec2_dns" {
   value = aws_instance.testvm.public_dns
 }
