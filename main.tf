@@ -37,7 +37,7 @@ resource "aws_security_group" "sg" {
       to_port          = 22
       protocol         = "tcp"
       #45.16.0.0/12
-      cidr_blocks      = ["0.0.0.0/0"]
+      cidr_blocks      = ["45.16.0.0/12"]
       ipv6_cidr_blocks = null
       prefix_list_ids  = null
       self             = false
@@ -49,7 +49,7 @@ resource "aws_security_group" "sg" {
       to_port          = "-1"
       protocol         = "icmp"
       #45.16.0.0/12
-      cidr_blocks      = ["0.0.0.0/0"]
+      cidr_blocks      = ["45.16.0.0/12"]
       ipv6_cidr_blocks = null
       prefix_list_ids  = null
       self             = false
