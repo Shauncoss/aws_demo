@@ -1,0 +1,15 @@
+on: [push]
+
+jobs:
+  setup-tf-workspace:
+    name: Setup Terraform workspace
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: setup workspace
+        uses: cbsinteractive/create-tfc-workspace-action@v3
+        with:
+          organization: hashicorp-shauncoss
+          workspace: "my-workspace-name"
+          token: q1UQLMgPWiKvaw.atlasv1.SuRA2f3ZtdwB8DLNycpU5qYyYgKTHKhhU31C9tLua8gkfGPtovMjS2SGtgTozZXLHsw
