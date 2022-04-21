@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: setup workspace
-        uses: Bardavon-Health/actions-terraform-cloud-create-workspace@v1.0
+        uses: Bardavon-Health/actions-terraform-cloud-create-workspace@v1
         with:
           org: hashicorp-shauncoss
           name: "my-workspace-name"
