@@ -11,7 +11,7 @@ jobs:
       - name: setup workspace
         uses: Bardavon-Health/actions-terraform-cloud-create-workspace@v1
         with:
-          org: hashicorp-shauncoss
+          org: hashicorp-scoss
           name: "my-workspace-name"
           token: AI9Co173EoYZzA.atlasv1.iYwVbnBNA0jY0zfMOcfzRLq6QkVjVQH5laWro34ZqyzTxDc9dVHoiebGziNPvmyiqg8
           exec_mode: local
