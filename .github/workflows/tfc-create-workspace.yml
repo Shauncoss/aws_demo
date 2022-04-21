@@ -9,8 +9,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: setup workspace
-        uses: cbsinteractive/create-tfc-workspace-action@v3
+        uses: Bardavon-Health/actions-terraform-cloud-create-workspace@v1.0
         with:
-          orgName: hashicorp-shauncoss
-          workspaceName: "my-workspace-name"
-          tfcToken: AI9Co173EoYZzA.atlasv1.iYwVbnBNA0jY0zfMOcfzRLq6QkVjVQH5laWro34ZqyzTxDc9dVHoiebGziNPvmyiqg8
+          org: hashicorp-shauncoss
+          name: "my-workspace-name"
+          token: AI9Co173EoYZzA.atlasv1.iYwVbnBNA0jY0zfMOcfzRLq6QkVjVQH5laWro34ZqyzTxDc9dVHoiebGziNPvmyiqg8
+          
