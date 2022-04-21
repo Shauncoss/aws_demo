@@ -2,6 +2,7 @@ on: [push]
 
 jobs:
   setup-tf-workspace:
+    runs-on: ubuntu-latest
     name: Setup Terraform workspace
     steps:
       - name: Checkout
